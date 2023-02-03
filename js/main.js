@@ -30,7 +30,7 @@ const kittenThreeRace = "Maine Coon";
 
 
 
-const kittenOne = `<li class="card">
+let kittenOne = `<li class="card">
 <article>
   <img
     class="card_img"
@@ -46,7 +46,7 @@ const kittenOne = `<li class="card">
 </li>`;
 
 
-const kittenTwo = `<li class="card">
+let kittenTwo = `<li class="card">
 <img
   class="card_img"
   src= ${kittenTwoImage}
@@ -59,7 +59,7 @@ const kittenTwo = `<li class="card">
 </p>
 </li>`;
 
-const kittenThree = `<li class="card">
+let kittenThree = `<li class="card">
 <img
   class="card_img"
   src=${kittenThreeImage}
@@ -73,3 +73,19 @@ const kittenThree = `<li class="card">
 </li>`;
 
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
+
+if (kittenOneDesc.includes(descrSearchText)){
+    kittenTwo =`<li class="collapsed">`;
+    kittenThree =`<li class="collapsed">`;
+}
+
+if (kittenTwoDesc.includes(descrSearchText)){
+    kittenOne =`<li class="collapsed">`;
+    kittenThree =`<li class="collapsed">`;
+    
+}
+
+if (kittenThreeDesc.includes(descrSearchText)){
+    kittenOne =`<li class="collapsed">`;
+    kittenTwo =`<li class="collapsed">`;
+}
