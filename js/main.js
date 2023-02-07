@@ -4,9 +4,10 @@ const showForm = document.querySelector('.js-new-form');
 showForm.classList.remove('collapsed');
 
 const input_search_desc = document.querySelector(".js_in_search_desc");
-const descrSearchText = input_search_desc.value;
 
 const list = document.querySelector('.js-list');
+
+const button = document.querySelector('.js-button');
 
 const kittenOneImage = "https://dev.adalab.es/gato-siames.webp";
 
@@ -26,10 +27,6 @@ const kittenThreeName = "Cielo";
 const kittenThreeDesc = "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.";
 const kittenThreeRace = "Maine Coon";
 
-
-
-
-
 let kittenOne = `<li class="card">
 <article>
   <img
@@ -44,7 +41,6 @@ let kittenOne = `<li class="card">
   </p>
 </article>
 </li>`;
-
 
 let kittenTwo = `<li class="card">
 <img
@@ -74,18 +70,36 @@ let kittenThree = `<li class="card">
 
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
-if (kittenOneDesc.includes(descrSearchText)){
-    kittenTwo =`<li class="collapsed">`;
-    kittenThree =`<li class="collapsed">`;
+/* Cuando buscamos una palabra y le damos al boton de buscar, aparece solo el gatito que coincida con la busqueda */
+
+button.addEventListener('click', (event) => {
+  const descrSearchText = input_search_desc.value;
+  event.preventDefault();
+  if (kittenOneDesc.includes(descrSearchText)){
+  list.innerHTML = kittenOne;
+  };
+  if (kittenTwoDesc.includes(descrSearchText)){
+  list.innerHTML = kittenTwo;
+  };
+  if (kittenThreeDesc.includes(descrSearchText)){
+  list.innerHTML = kittenThree;
+  };
+});
+
+
+
+
+/* if (kittenOneDesc.includes(descrSearchText)){
+    
+list.innerHTML += kittenOne;
 }
 
 if (kittenTwoDesc.includes(descrSearchText)){
-    kittenOne =`<li class="collapsed">`;
-    kittenThree =`<li class="collapsed">`;
-    
+  
+list.innerHTML += kittenTwo;
 }
 
 if (kittenThreeDesc.includes(descrSearchText)){
-    kittenOne =`<li class="collapsed">`;
-    kittenTwo =`<li class="collapsed">`;
-}
+   
+list.innerHTML += kittenThree;
+} */
