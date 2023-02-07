@@ -3,11 +3,19 @@
 const showForm = document.querySelector('.js-new-form');
 showForm.classList.remove('collapsed');
 
+const buttonPlus = document.querySelector(".js-plus");
+
+
+
 const input_search_desc = document.querySelector(".js_in_search_desc");
 
 const list = document.querySelector('.js-list');
 
 const button = document.querySelector('.js-button');
+
+let html = '';
+
+const intForm = document.querySelector ('.js-new-form');
 
 const kittenOneImage = "https://dev.adalab.es/gato-siames.webp";
 
@@ -70,21 +78,87 @@ let kittenThree = `<li class="card">
 
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
+
+if (kittenOneRace === '') {
+html = `Uy que despiste no sabemos su raza`;
+ console.log (html);
+}else {
+  html = kittenOneRace;
+  console.log (html);
+}
+if (kittenTwoRace === '') {
+  html = `Uy que despiste no sabemos su raza`;
+  console.log (html);
+  }else {
+    html = kittenTwoRace;
+    console.log (html);
+}
+  
+if (kittenThreeRace === '') {
+    html = `Uy que despiste no sabemos su raza`;
+    console.log (html);
+    }else {
+      html = kittenThreeRace;
+      console.log (html);
+}
+    
+
+/* Mostrarocultar formulario para añadir gatito*/
+
+buttonPlus.addEventListener('click',(event)=> {
+
+  if (intForm.classList.contains('collapsed')) {
+    intForm.classList.remove('collapsed');
+    }else {
+    intForm.classList.add('collapsed');
+    }
+});
+
+
+
+
+
 /* Cuando buscamos una palabra y le damos al boton de buscar, aparece solo el gatito que coincida con la busqueda */
 
-button.addEventListener('click', (event) => {
+input_search_desc.addEventListener('change', (event) => {
   const descrSearchText = input_search_desc.value;
   event.preventDefault();
-  if (kittenOneDesc.includes(descrSearchText)){
-  list.innerHTML = kittenOne;
-  };
+    if (kittenOneDesc.includes(descrSearchText)){
+    kittenOne.classList.add('collapsed-kitten');
+    kittenTwo.classList.add('collapsed-kitten');
+    kittenThree.classList.add('collapsed-kitten');
+    kittenOne.classList.remove('collapsed-kitten');
+    };
   if (kittenTwoDesc.includes(descrSearchText)){
-  list.innerHTML = kittenTwo;
+    kittenOne.classList.add('collapsed-kitten');
+    kittenTwo.classList.add('collapsed-kitten');
+    kittenThree.classList.add('collapsed-kitten');
+    kittenTwo.classList.remove('collapsed-kitten');
   };
   if (kittenThreeDesc.includes(descrSearchText)){
-  list.innerHTML = kittenThree;
+    kittenOne.classList.add('collapsed-kitten');
+    kittenTwo.classList.add('collapsed-kitten');
+    kittenThree.classList.add('collapsed-kitten');
+    kittenThree.classList.remove('collapsed-kitten');
   };
 });
+
+
+// button.addEventListener('click', (event) => {
+//   const descrSearchText = input_search_desc.value;
+//   event.preventDefault();
+//   if (kittenOneDesc.includes(descrSearchText)){
+//   list.innerHTML = kittenOne;
+//   };
+//   if (kittenTwoDesc.includes(descrSearchText)){
+//   list.innerHTML = kittenTwo;
+//   };
+//   if (kittenThreeDesc.includes(descrSearchText)){
+//   list.innerHTML = kittenThree;
+//   };
+// });
+
+
 
 
 
