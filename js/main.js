@@ -5,15 +5,17 @@ showForm.classList.remove("collapsed");
 
 const buttonPlus = document.querySelector(".js-plus");
 
-const input_search_desc = document.querySelector(".js_in_search_desc");
 
+/* Variables de filtrar o buscar gatitos por descripción */
+
+const buttonSearch = document.querySelector(".js-button-search"); 
+const input_search_desc = document.querySelector(".js_in_search_desc");
+const input_search_race = document.querySelector(".js_in_search_race");
 const list = document.querySelector(".js-list");
 
-const button = document.querySelector(".js-button");
 
 /* Variables botón añadir nuevo gato */
 const buttonAdd = document.querySelector(".js-btn-add");
-
 const inputDesc = document.querySelector(".js-input-desc");
 const inputPhoto = document.querySelector(".js-input-photo");
 const inputName = document.querySelector(".js-input-name");
@@ -187,25 +189,26 @@ buttonPlus.addEventListener("click", handleButtonPlus);
 
 /* Cuando buscamos una palabra y le damos al boton de buscar, aparece solo el gatito que coincida con la busqueda */
 
-input_search_desc.addEventListener("change", (event) => {
-  const descrSearchText = input_search_desc.value;
+
+
+const handleButtonSearch =(event)=>{
   event.preventDefault();
+  const descrSearchText = input_search_desc.value;
+  const raceSearchText = input_search_race.value;
+  
   if (kittenOneDesc.includes(descrSearchText)) {
-    kittenOne.classList.add("collapsed-kitten");
-    kittenTwo.classList.add("collapsed-kitten");
-    kittenThree.classList.add("collapsed-kitten");
-    kittenOne.classList.remove("collapsed-kitten");
+    list.innerHTML = kittenOne;
   }
   if (kittenTwoDesc.includes(descrSearchText)) {
-    kittenOne.classList.add("collapsed-kitten");
-    kittenTwo.classList.add("collapsed-kitten");
-    kittenThree.classList.add("collapsed-kitten");
-    kittenTwo.classList.remove("collapsed-kitten");
+    list.innerHTML = kittenTwo;
   }
   if (kittenThreeDesc.includes(descrSearchText)) {
-    kittenOne.classList.add("collapsed-kitten");
-    kittenTwo.classList.add("collapsed-kitten");
-    kittenThree.classList.add("collapsed-kitten");
-    kittenThree.classList.remove("collapsed-kitten");
+    list.innerHTML = kittenThree;
+  } 
+  if (descrSearchText === "" || raceSearchText === "") {
+    list.innerHTML = "Uy, parece que has olvidado algo";
   }
-});
+}
+
+buttonSearch.addEventListener("click", handleButtonSearch);
+
