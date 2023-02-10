@@ -17,6 +17,7 @@ const buttonAdd = document.querySelector(".js-btn-add");
 const inputDesc = document.querySelector(".js-input-desc");
 const inputPhoto = document.querySelector(".js-input-photo");
 const inputName = document.querySelector(".js-input-name");
+const inputRace = document.querySelector(".js-input-race");
 const labelMessageError = document.querySelector(".js-label-error");
 
 /* Botón de cancelar menu añadir gatitos */
@@ -24,8 +25,7 @@ const buttonCancel = document.querySelector(".js-btn-cancel");
 
 let html = "";
 
-/* const intForm = document.querySelector(".js-new-form"); */
-const newFormElement = document.querySelector('.js-new-form');
+const intForm = document.querySelector(".js-new-form");
 
 const kittenOneImage = "https://dev.adalab.es/gato-siames.webp";
 
@@ -114,8 +114,32 @@ if (kittenThreeRace === "") {
   console.log(html);
 }
 
+/* Crear una nueva tarjeta de gatito con todos los datos y el código HTML */
+
+function renderKitten (url, desc, name, race) {
+  desc = inputDesc.value;
+  url = inputPhoto.value;
+  name = inputName.value;
+  race = inputRace.value;
+
+  list.innerHTML += `<li class="card">
+<img
+  class="card_img"
+  src=${url}
+  alt="maine-coon-cat"
+/>
+<h3 class="card_title">${name.toUpperCase()}</h3>
+<h4 class="card_race">${race}</h4>
+<p class="card_description">
+  ${desc}
+</p>
+</li>`;
+}
+
+
 /* Boton para añadir un nuevo gato y verificar que están todos los campos rellenos */
-buttonAdd.addEventListener("click", (event) => {
+
+function addNewKitten(event) {
   event.preventDefault();
   const valueDesc = inputDesc.value;
   const valuePhoto = inputPhoto.value;
@@ -124,38 +148,42 @@ buttonAdd.addEventListener("click", (event) => {
   if (valueDesc === "" || valuePhoto === "" || valueName === "") {
     labelMessageError.innerHTML = "Uy, parece que has olvidado algo";
   } else {
+    renderKitten();
   }
-});
+}
+buttonAdd.addEventListener("click", addNewKitten);
 
 /* Ocultar menu añadir gatito al pulsar el botón CANCELAR */
-buttonCancel.addEventListener("click", (event) => {
+function handleButtonCancel(event) {
   event.preventDefault();
   inputDesc.value = "";
   inputPhoto.value = "";
   inputName.value = "";
   intForm.classList.add("collapsed");
-});
+}
+
+buttonCancel.addEventListener("click", handleButtonCancel);
 
 /* Mostrarocultar formulario para añadir gatito */
 
 function showNewCatForm() {
-  newFormElement.classList.remove('collapsed');
-};
+  intForm.classList.remove("collapsed");
+}
 
 function hideNewCatForm() {
-  newFormElement.classList.add('collapsed');
-};
+  intForm.classList.add("collapsed");
+}
 
-
-
-buttonPlus.addEventListener("click", (event) => {
+function handleButtonPlus(event) {
   event.preventDefault();
   if (intForm.classList.contains("collapsed")) {
-    intForm.classList.remove("collapsed");
+    showNewCatForm();
   } else {
-    intForm.classList.add("collapsed");
+    hideNewCatForm();
   }
-});
+}
+
+buttonPlus.addEventListener("click", handleButtonPlus);
 
 /* Cuando buscamos una palabra y le damos al boton de buscar, aparece solo el gatito que coincida con la busqueda */
 
