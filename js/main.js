@@ -29,38 +29,58 @@ let html = "";
 
 const intForm = document.querySelector(".js-new-form");
 
-const kittenOneImage = "https://dev.adalab.es/gato-siames.webp";
+//OBJETOS DE GATITOS
 
-const kittenOneName = "Anastacio";
+const kittenData_1 = {
+  image: 'https://dev.adalab.es/gato-siames.webp',
+  name: 'Anastacio',
+  desc: 'Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+  race: 'Siamés',
+};
 
-const kittenOneDesc =
-  "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.";
+const kittenData_2 = {
+  image: "https://dev.adalab.es/sphynx-gato.webp",
+  name: "Fiona",
+  desc:  "Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.",
+  race: "Sphynx",
+};
 
-const kittenOneRace = "Siamés";
+const kittenData_3 = {
+  image: "https://dev.adalab.es/maine-coon-cat.webp",
+  name: "Cielo",
+  desc: "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.",
+  race: "Maine Coon",
+};
 
-const kittenTwoImage = "https://dev.adalab.es/sphynx-gato.webp";
-const kittenTwoName = "Fiona";
-const kittenTwoDesc =
-  "Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.";
-const kittenTwoRace = "Sphynx";
 
-const kittenThreeImage = "https://dev.adalab.es/maine-coon-cat.webp";
-const kittenThreeName = "Cielo";
-const kittenThreeDesc =
-  "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.";
-const kittenThreeRace = "Maine Coon";
+// Lista con la información de todos los gatitos
+const kittenDataList = [kittenData_1, kittenData_2, kittenData_3];
+
+
+
+//Lista 
+function renderKittenList(kittenDataList) {
+  //Completa el código:
+  //Vaciamos el innerHTML del <ul> de la página.
+  //Iteramos sobre el listado de gatitos
+  //Y por cada iteración pintamos un gatito.
+  //utilizando la función renderKitten(kittenItem)
+}
+
+
+
 
 let kittenOne = `<li class="card">
 <article>
   <img
     class="card_img"
-    src= ${kittenOneImage}
+    src= ${kittenData_1.image}
     alt="siames-cat"
   />
-  <h3 class="card_title">${kittenOneName.toUpperCase()}</h3>
-  <h4 class="card_race">${kittenOneRace}</h4>
+  <h3 class="card_title">${kittenData_1.name.toUpperCase()}</h3>
+  <h4 class="card_race">${kittenData_1.race}</h4>
   <p class="card_description">
-    ${kittenOneDesc}
+    ${kittenData_1.desc}
   </p>
 </article>
 </li>`;
@@ -68,57 +88,57 @@ let kittenOne = `<li class="card">
 let kittenTwo = `<li class="card">
 <img
   class="card_img"
-  src= ${kittenTwoImage}
+  src= ${kittenData_2.image}
   alt="sphynx-cat"
 />
-<h3 class="card_title">${kittenTwoName.toUpperCase()}</h3>
-<h4 class="card_race">${kittenTwoRace}</h4>
+<h3 class="card_title">${kittenData_2.name.toUpperCase()}</h3>
+<h4 class="card_race">${kittenData_2.race}</h4>
 <p class="card_description">
-  ${kittenTwoDesc}
+  ${kittenData_2.desc}
 </p>
 </li>`;
 
 let kittenThree = `<li class="card">
 <img
   class="card_img"
-  src=${kittenThreeImage}
+  src=${kittenData_3.image}
   alt="maine-coon-cat"
 />
-<h3 class="card_title">${kittenThreeName.toUpperCase()}</h3>
-<h4 class="card_race">${kittenThreeRace}</h4>
+<h3 class="card_title">${kittenData_3.name.toUpperCase()}</h3>
+<h4 class="card_race">${kittenData_3.race}</h4>
 <p class="card_description">
-  ${kittenThreeDesc}
+  ${kittenData_3.desc}
 </p>
 </li>`;
 
 list.innerHTML = kittenOne + kittenTwo + kittenThree;
 
-if (kittenOneRace === "") {
+if (kittenData_1.race === "") {
   html = `Uy que despiste no sabemos su raza`;
   console.log(html);
 } else {
-  html = kittenOneRace;
+  html = kittenData_1.race;
   console.log(html);
 }
-if (kittenTwoRace === "") {
+if (kittenData_2.race === "") {
   html = `Uy que despiste no sabemos su raza`;
   console.log(html);
 } else {
-  html = kittenTwoRace;
+  html = kittenData_2.race;
   console.log(html);
 }
 
-if (kittenThreeRace === "") {
+if (kittenData_3.race === "") {
   html = `Uy que despiste no sabemos su raza`;
   console.log(html);
 } else {
-  html = kittenThreeRace;
+  html = kittenData_3.race;
   console.log(html);
 }
 
 /* Crear una nueva tarjeta de gatito con todos los datos y el código HTML */
 
-function renderKitten (url, desc, name, race) {
+function renderKitten (kittenData) {
   desc = inputDesc.value;
   url = inputPhoto.value;
   name = inputName.value;
@@ -190,19 +210,18 @@ buttonPlus.addEventListener("click", handleButtonPlus);
 /* Cuando buscamos una palabra y le damos al boton de buscar, aparece solo el gatito que coincida con la busqueda */
 
 
-
 const handleButtonSearch =(event)=>{
   event.preventDefault();
   const descrSearchText = input_search_desc.value;
   const raceSearchText = input_search_race.value;
   
-  if (kittenOneDesc.includes(descrSearchText)) {
+  if (kittenData_1.desc.includes(descrSearchText)) {
     list.innerHTML = kittenOne;
   }
-  if (kittenTwoDesc.includes(descrSearchText)) {
+  if (kittenData_2.desc.includes(descrSearchText)) {
     list.innerHTML = kittenTwo;
   }
-  if (kittenThreeDesc.includes(descrSearchText)) {
+  if (kittenData_3.desc.includes(descrSearchText)) {
     list.innerHTML = kittenThree;
   } 
   if (descrSearchText === "" || raceSearchText === "") {
